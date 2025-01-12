@@ -1,0 +1,49 @@
+digraph frequency_reference_points {
+    rankdir=LR; // Layout horizontal de izquierda a derecha
+    node [shape=box, style=filled, fontname="Helvetica", fontsize=16, width=2.0]; // Estilo de nodo estándar
+
+    // Start node
+    Start [label="Start:\nGenerate\nFrequency\nReference\nPoints", shape=ellipse, style=filled, color="#6CA6CD", fontname="Helvetica", fontsize=18];
+
+    // Step 1: Define frequency ranges
+    A1 [label="Generate\nLow\nFrequencies", style=filled, color="#87CEFA"];
+    A2 [label="Generate\nHigh\nFrequencies", style=filled, color="#87CEFA"];
+    
+    // Step 2: Partition the interval
+    B1 [label="Define\nFrequency\nRanges", style=filled, color="#4682B4"];
+    B2 [label="Set\nFrequency\nChange\nPoints", style=filled, color="#FFA500"];
+    B3 [label="Divide\nInterval", style=filled, color="#FFA500"];
+
+    // Step 3: Assign initial frequency
+    C1 [label="Assign\nInitial\nFrequency", style=filled, color="#4682B4"];
+    C2 [label="Low or\nHigh\nFrequency", style=filled, color="#4682B4"];
+
+    // Step 4: Iterate over points and adjust frequencies
+    D1 [label="Iterate\nover\nPoints", style=filled, color="#FFA500"];
+    D2 [label="Choose:\nLow, High,\nor No Change", shape=diamond, style=filled, color="#FFA500"];
+    D3 [label="Switch\nto Low", style=filled, color="#FFD700"];
+    D4 [label="Switch\nto High", style=filled, color="#FFD700"];
+    D5 [label="Maintain\nFrequency", style=filled, color="#FFD700"];
+    
+    // End node
+    End [label="Return\nFrequency\nPoints", shape=ellipse, style=filled, color="#6CA6CD", fontname="Helvetica", fontsize=18];
+
+    // Connections
+    Start -> A1;
+    Start -> A2;
+    {A1 A2} -> B1;
+    B1 -> B2;
+    B2 -> B3;
+    B3 -> C1;
+    C1 -> C2;
+    C2 -> D1;
+    D1 -> D2;
+    D2 -> D3 [label="Low"];
+    D2 -> D4 [label="High"];
+    D2 -> D5 [label="No\nChange"];
+    D3 -> D1;
+    D4 -> D1;
+    D5 -> D1;
+    D1 -> End;
+}
+

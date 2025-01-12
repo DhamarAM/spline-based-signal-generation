@@ -1,0 +1,46 @@
+digraph non_uniform_frequency_points {
+    rankdir=LR; // Layout horizontal de izquierda a derecha para hacerlo más compacto
+    node [shape=box, fontname="Helvetica", fontsize=16, width=2.0, height=1.5]; // Estilo de nodo estándar
+
+    // Start node
+    Start [label="Start: Generate\nNon-Uniform\nFrequency\nPoints", shape=ellipse, fontname="Helvetica", fontsize=18];
+
+    // Step 1: Generate frequency ranges
+    A1 [label="Generate\nLow Frequencies"];
+    A2 [label="Generate\nHigh Frequencies"];
+    
+    // Step 2: Define non-uniform partition
+    B1 [label="Define\nNon-Uniform\nPartition"];
+    B2 [label="Randomly\nSelect Points"];
+
+    // Step 3: Initialize variation type
+    C1 [label="Initialize\nVariation\nType\n(Low or High)"];
+
+    // Step 4: Iterate and assign frequencies
+    D1 [label="Iterate\nover\nPoints"];
+    D2 [label="Assign Frequency\n(Low or High)", shape=diamond];
+    D3 [label="Switch\nto Low"];
+    D4 [label="Switch\nto High"];
+    D5 [label="Maintain\nFrequency"];
+    
+    // End node
+    End [label="Return\nFrequency\nPoints\nand Types", shape=ellipse, fontname="Helvetica", fontsize=18];
+
+    // Connections
+    Start -> A1;
+    Start -> A2;
+    A1 -> B1;
+    A2 -> B1;
+    B1 -> B2;
+    B2 -> C1;
+    C1 -> D1;
+    D1 -> D2;
+    D2 -> D3 [label="Low"];
+    D2 -> D4 [label="High"];
+    D2 -> D5 [label="No Change"];
+    D3 -> D1;
+    D4 -> D1;
+    D5 -> D1;
+    D1 -> End;
+}
+
